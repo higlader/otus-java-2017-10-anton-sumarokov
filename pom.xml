@@ -27,6 +27,22 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+
+            <plugin>
+                <groupId>com.pyx4me</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>2.0.4</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sf.proguard</groupId>
+                        <artifactId>proguard-base</artifactId>
+                        <version>5.3.3</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+
         </plugins>
     </build>
 </project>
