@@ -70,24 +70,19 @@
                     <execution>
                         <phase>package</phase>
                         <goals><goal>proguard</goal></goals>
-                        <configuration>
-                        <injar>${project.build.finalName}.jar</injar>
-                        <proguardVersion>5.3.3</proguardVersion>
-                        <options>
-                            <option>-allowaccessmodification</option>
-                            <option>-dontoptimize</option>
-                            <option>-dontshrink</option>
-                            <option>-dontnote</option>
-                            <option>-dontwarn</option>
-                            <option>-keepattributes Signature</option>
-                            <option>-keep class com.mycompany.MyPlugin { *; }</option>
-                        </options>
-                        <libs>
-                            <lib>${java.home}/lib/rt.jar</lib>
-                        </libs>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                     <injar>${project.build.finalName}.jar</injar>
+                     <proguardVersion>5.3.3</proguardVersion>
+                     <options>
+                         <option>-keep public class * {public static void main(java.lang.String[]);}</option>
+                     </options>
+                      <libs>
+                          <lib>${java.home}/lib/rt.jar</lib>
+                          <lib>${java.home}/lib/jce.jar</lib>
+                      </libs>
+                 </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>net.sf.proguard</groupId>
