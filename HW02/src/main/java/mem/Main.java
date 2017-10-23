@@ -20,7 +20,7 @@ public class Main {
     public static void main(String... args) throws InterruptedException {
         System.out.println("pid: " + ManagementFactory.getRuntimeMXBean().getName());
 
-        int size = 1000;
+        int size = 20_000_000;
 
         System.out.println("Starting the loop");
         Runtime runtime = Runtime.getRuntime();
@@ -31,8 +31,8 @@ public class Main {
             Object[] array = new Object[size];
             System.out.println("New array of size: " + array.length + " created");
             for (int i = 0; i < size; i++) {
-                //array[i] = new Object();
-                array[i] = new String(""); //String pool
+                array[i] = new Object();
+                //array[i] = new String(""); //String pool
                 //array[i] = new String(new char[0]); //without String pool
                 //array[i] = new MyClass();
             }
