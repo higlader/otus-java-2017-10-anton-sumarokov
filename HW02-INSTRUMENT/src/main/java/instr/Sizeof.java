@@ -1,17 +1,19 @@
-package mem;
+package instr;
 import java.lang.instrument.Instrumentation;
 
 /**
- * Created by anton on 23.10.17.
+ * Created by anton on 24.10.17.
  */
-public class ObjectSizeFetcher {
+
+
+public class Sizeof {
     private static Instrumentation instrumentation;
 
     public static void premain(String args, Instrumentation inst) {
         instrumentation = inst;
     }
 
-    public static long getObjectSize(Object o) {
+    public static long sizeof(Object o) {
         return instrumentation.getObjectSize(o);
     }
 }
