@@ -19,13 +19,15 @@ import java.lang.management.ManagementFactory;
 public class Main {
     public static void main(String... args) throws InterruptedException {
         System.out.println("pid: " + ManagementFactory.getRuntimeMXBean().getName());
+        Runtime runtime = Runtime.getRuntime();
+        System.gc();
+        long mem = runtime.totalMemory() - runtime.freeMemory();
 
         int size = 20_000_000;
 
         System.out.println("Starting the loop");
-        Runtime runtime = Runtime.getRuntime();
-        System.gc();
-        long mem = runtime.totalMemory() - runtime.freeMemory();
+
+
 
         while (true) {
             Object[] array = new Object[size];
@@ -37,13 +39,11 @@ public class Main {
                 //array[i] = new MyClass();
             }
             System.out.println("Created " + size + " objects.");
-            System.gc();
             long mem1 = runtime.totalMemory() - runtime.freeMemory();
             long total = (mem1 - mem) / size;
             System.out.println("Объект равен: " + total + "Byte");
             Thread.sleep(1000); //wait for 1 sec
         }
-
     }
 
     private static class MyClass {
