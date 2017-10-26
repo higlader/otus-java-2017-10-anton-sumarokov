@@ -3,7 +3,11 @@ package mem;
 /**
  * Created by anton on 23.10.17.
  */
+import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
+
 import java.lang.management.ManagementFactory;
+import java.lang.reflect.Array;
+import java.util.HashMap;
 
 /**
  * VM options -Xmx512m -Xms512m
@@ -19,11 +23,17 @@ import java.lang.management.ManagementFactory;
 public class Main {
     public static void main(String... args) throws InterruptedException {
         System.out.println("pid: " + ManagementFactory.getRuntimeMXBean().getName());
-        Runtime runtime = Runtime.getRuntime();
+
+
+        ObjectSizeof.getSize(new Integer[100]);
+        //System.out.println(ObjectSizeCalculator.getObjectSize(new HashMap<String, Integer>(10000000)));
+
+
+       /* Runtime runtime = Runtime.getRuntime();
         System.gc();
         long mem = runtime.totalMemory() - runtime.freeMemory();
 
-        int size = 20_000_000;
+        int size = 2000;
 
         System.out.println("Starting the loop");
 
@@ -40,6 +50,7 @@ public class Main {
             }
             System.out.println("Created " + size + " objects.");
             long mem1 = runtime.totalMemory() - runtime.freeMemory();
+            System.gc();
             long total = (mem1 - mem) / size;
             System.out.println("Объект равен: " + total + "Byte");
             Thread.sleep(1000); //wait for 1 sec
@@ -49,5 +60,6 @@ public class Main {
     private static class MyClass {
         private int i = 0;
         private long l = 1;
+    }*/
     }
 }
