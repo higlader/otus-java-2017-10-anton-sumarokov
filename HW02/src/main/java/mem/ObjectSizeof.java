@@ -12,10 +12,10 @@ public class ObjectSizeof {
         Runtime runtime = Runtime.getRuntime();
         System.gc();
         int size = Array.getLength(array);
-        Object[] obj = new Object[size];
         long mem = runtime.totalMemory() - runtime.freeMemory();
 
         while (true) {
+            Object[] obj = new Object[size];
             System.out.println("New array of size: " + obj.length + " created");
             for (int i = 0; i < size; i++) {
                 obj[i] = new Object[i];
