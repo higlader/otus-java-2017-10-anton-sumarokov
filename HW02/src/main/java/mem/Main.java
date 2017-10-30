@@ -8,6 +8,7 @@ import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.Array;
 import java.util.HashMap;
+import java.util.function.Supplier;
 
 /**
  * VM options -Xmx512m -Xms512m
@@ -26,7 +27,7 @@ public class Main {
 
 
         ObjectSizeof<String> srt = new ObjectSizeof<>(10);
-        srt.getSize();
+        srt.getSize(String::new);
 
        /* Runtime runtime = Runtime.getRuntime();
         System.gc();
