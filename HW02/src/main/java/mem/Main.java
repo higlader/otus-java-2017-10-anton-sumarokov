@@ -25,9 +25,8 @@ public class Main {
         System.out.println("pid: " + ManagementFactory.getRuntimeMXBean().getName());
 
 
-        ObjectSizeof.getSize(new Integer[100]);
-        //System.out.println(ObjectSizeCalculator.getObjectSize(new HashMap<String, Integer>(10000000)));
-
+        ObjectSizeof<String> srt = new ObjectSizeof<>(10);
+        srt.getSize();
 
        /* Runtime runtime = Runtime.getRuntime();
         System.gc();
