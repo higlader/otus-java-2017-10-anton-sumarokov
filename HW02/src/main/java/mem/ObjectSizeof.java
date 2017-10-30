@@ -14,7 +14,7 @@ public class ObjectSizeof<T> {
         this.size = size;
     }
 
-    public  <T> T getSize(Supplier<T> supplier) {
+    public  <T> Object getSize(Supplier<T> supplier) {
         Object[] obj = new Object[size];
         Runtime runtime = Runtime.getRuntime();
         runtime.gc();
@@ -27,10 +27,9 @@ public class ObjectSizeof<T> {
         runtime.gc();
         System.out.println("Created " + size + " objects.");
         long mem1 = runtime.totalMemory() - runtime.freeMemory();
-        long total = (mem1 - mem);
+        long total = (mem1 - mem)/size;
         System.out.println("Объект равен: " + total + "Byte");
-        //Thread.sleep(1000); //wait for 1 sec
-        return (T) obj;
+        return obj;
     }
 }
 
