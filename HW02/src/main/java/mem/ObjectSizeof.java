@@ -28,8 +28,7 @@ public class ObjectSizeof<T> {
         System.out.println("Created " + size + " objects.");
         long mem1 = runtime.totalMemory() - runtime.freeMemory();
         long total = (mem1 - mem)/size;
-        System.out.println("Объект равен: " + total + "Byte");
-        return obj;
+        return ("Объект равен: " + total + "Byte");
     }
 }
 

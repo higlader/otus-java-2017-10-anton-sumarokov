@@ -3,11 +3,16 @@ package mem;
 /**
  * Created by anton on 23.10.17.
  */
+import com.sun.org.apache.bcel.internal.generic.D2F;
+import com.sun.org.apache.bcel.internal.generic.I2B;
+import com.sun.org.apache.bcel.internal.generic.L2D;
 import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
 
 import java.lang.management.ManagementFactory;
+import java.util.Collection;
 import java.lang.reflect.Array;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 /**
@@ -26,40 +31,12 @@ public class Main {
         System.out.println("pid: " + ManagementFactory.getRuntimeMXBean().getName());
 
 
-        ObjectSizeof<String> srt = new ObjectSizeof<>(10);
-        srt.getSize(String::new);
+        ObjectSizeof<String> srt = new ObjectSizeof<>(5_000_000);
+        System.out.println(srt.getSize(String::new));
+        ObjectSizeof<Integer> s = new ObjectSizeof<>(10_000_000);
+        System.out.println(s.getSize(Object::new));
+        ObjectSizeof<Double> cl = new ObjectSizeof<>(3_000_000);
+        System.out.println(cl.getSize(D2F::new));
 
-       /* Runtime runtime = Runtime.getRuntime();
-        System.gc();
-        long mem = runtime.totalMemory() - runtime.freeMemory();
-
-        int size = 2000;
-
-        System.out.println("Starting the loop");
-
-
-
-        while (true) {
-            Object[] array = new Object[size];
-            System.out.println("New array of size: " + array.length + " created");
-            for (int i = 0; i < size; i++) {
-                array[i] = new Object();
-                //array[i] = new String(""); //String pool
-                //array[i] = new String(new char[0]); //without String pool
-                //array[i] = new MyClass();
-            }
-            System.out.println("Created " + size + " objects.");
-            long mem1 = runtime.totalMemory() - runtime.freeMemory();
-            System.gc();
-            long total = (mem1 - mem) / size;
-            System.out.println("Объект равен: " + total + "Byte");
-            Thread.sleep(1000); //wait for 1 sec
-        }
-    }
-
-    private static class MyClass {
-        private int i = 0;
-        private long l = 1;
-    }*/
     }
 }
