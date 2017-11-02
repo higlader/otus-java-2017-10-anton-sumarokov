@@ -4,14 +4,17 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        MyArrayList<String> a1 = new MyArrayList<String>();
-        a1.add("M");
-        a1.add("ASD");
+        ArrayList<String> str = new ArrayList<>();
+        str.add("A");
+        str.add("B");
+        str.add("E");
+        ArrayList<String> str1 = new ArrayList<>();
+        str1.add("E");
+        str1.add("B");
+        str1.add("Y");
+        str1.add("Z");
 
-        MyArrayList<String> a2 = new MyArrayList<String>();
-        a2.add("TEXT");
-
-        Collections.copy(a1,a2);
-        System.out.println("ArrayList1 after addAll:"+a1);
+        str.addAll(str1);
+        System.out.println(str);
     }
 }

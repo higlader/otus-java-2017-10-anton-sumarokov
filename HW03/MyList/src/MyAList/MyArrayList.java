@@ -1,15 +1,12 @@
 package MyAList;
 
-
 import java.util.*;
 import java.util.function.UnaryOperator;
-import java.util.Collections;
 
-class MyArrayList<T> implements List<T> {
-    private int size;
-    private T[] elementData;
-    private final int CAPACITY = 10;
-
+/**
+ * Created by anton on 02.11.17.
+ */
+public class MyArrayList<T> implements List<T> {
     @Override
     public void replaceAll(UnaryOperator<T> operator) {
 
@@ -138,5 +135,16 @@ class MyArrayList<T> implements List<T> {
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
         return null;
+    }
+
+    public static <T> void copy (List<T> destList,List<T> srcList) {
+        int srcSize = srcList.size();
+        int destSize = destList.size();
+        if (srcSize > destSize) {
+            System.out.println("Source List > Distanation List");
+        }
+        else {
+
+        }
     }
 }
