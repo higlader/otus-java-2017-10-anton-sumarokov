@@ -9,9 +9,11 @@ import java.util.function.Supplier;
  */
 public class ObjectSizeof<T> {
     int size;
+    Object type;
 
-    public ObjectSizeof(int size) {
+    public ObjectSizeof(int size, Object type) {
         this.size = size;
+        this.type = type;
     }
 
     public  <T> Object getSize(Supplier<T> supplier) {
