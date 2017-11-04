@@ -10,7 +10,7 @@ public class ObjectSizeof {
     int size = 1_000_000;
 
 
-    public  <T> Object getSize(Supplier<Object> supplier) {
+    public Object getSize(Supplier<Object> supplier) {
         Object[] obj = new Object[size];
         Runtime runtime = Runtime.getRuntime();
         runtime.gc();
