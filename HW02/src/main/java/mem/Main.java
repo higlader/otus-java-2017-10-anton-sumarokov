@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 public class Main {
     public static void main(String... args) throws InterruptedException {
 
-        ObjectSizeof str = new ObjectSizeof();
+        ObjectSizeof str = new ObjectSizeof(5_000_000);
 
         System.out.println(str.getSize(new Supplier<Object>() {
             @Override
