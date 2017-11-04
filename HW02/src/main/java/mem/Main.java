@@ -1,10 +1,7 @@
 package mem;
 
 
-import com.sun.org.apache.bcel.internal.generic.D2F;
-import com.sun.xml.internal.fastinfoset.util.StringArray;
-
-import java.lang.management.ManagementFactory;
+import java.util.function.Supplier;
 
 /**
  * Created by anton on 23.10.17.
@@ -14,16 +11,45 @@ import java.lang.management.ManagementFactory;
 
 public class Main {
     public static void main(String... args) throws InterruptedException {
-        System.out.println("pid: " + ManagementFactory.getRuntimeMXBean().getName());
+
+        ObjectSizeof str = new ObjectSizeof();
+
+        System.out.println(str.getSize(new Supplier<Object>() {
+            @Override
+            public Object get() {
+                return new Object();
+            }
+        }));
+
+        System.out.println(str.getSize(new Supplier<Object>() {
+            @Override
+            public Object get() {
+                return new String("");
+            }
+        }));
 
 
-        //ObjectSizeof<String> srt = new ObjectSizeof<>(5_000_000);
-        //System.out.println(srt.getSize(String::new));
-        //ObjectSizeof<Integer> s = new ObjectSizeof<>(10_000_000);
-        //System.out.println(s.getSize(Object::new));
-        //ObjectSizeof<Double> cl = new ObjectSizeof<>(3_000_000);
-        //System.out.println(cl.getSize(D2F::new));
-        ObjectSizeof<String[]> arr = new ObjectSizeof<>(3_000_000,"ADSFGFGFH");
-        System.out.println(arr.getSize(StringArray::new));
+        System.out.println(str.getSize(new Supplier<Object>() {
+            @Override
+            public Object get() {
+                return new String[0];
+            }
+        }));
+
+        System.out.println(str.getSize(new Supplier<Object>() {
+            @Override
+            public Object get() {
+                return new String[1];
+            }
+        }));
+
+        System.out.println(str.getSize(new Supplier<Object>() {
+            @Override
+            public Object get() {
+                return new String[5];
+            }
+        }));
+
     }
+
 }
