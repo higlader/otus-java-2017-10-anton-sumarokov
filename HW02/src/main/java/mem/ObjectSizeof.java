@@ -7,8 +7,11 @@ import java.util.function.Supplier;
  * Created by anton on 24.10.17.
  */
 public class ObjectSizeof {
-    int size = 1_000_000;
+    int size;
 
+    public ObjectSizeof(int size) {
+        this.size = size;
+    }
 
     public Object getSize(Supplier<Object> supplier) {
         Object[] obj = new Object[size];
