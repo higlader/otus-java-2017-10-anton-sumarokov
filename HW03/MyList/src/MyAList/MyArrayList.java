@@ -7,6 +7,29 @@ import java.util.function.UnaryOperator;
  * Created by anton on 02.11.17.
  */
 public class MyArrayList<T> implements List<T> {
+
+    private static  int SIZE = 10;
+
+    int size;
+    private Object[] array;
+
+    public MyArrayList() {
+        this.size = SIZE;
+    }
+
+    public MyArrayList(int capacity) {
+        array = new Object[capacity];
+        size = 0;
+    }
+
+
+    public MyArrayList(Collection<? extends T> c) {
+        array = c.toArray();
+        size = array.length;
+    }
+
+
+
     @Override
     public void replaceAll(UnaryOperator<T> operator) {
 
@@ -54,7 +77,14 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean add(T t) {
-        return false;
+        int source = array.length - size;
+        if(source < 1) {
+            array = Arrays.copyOf(array, size + 1);
+        }
+
+        array[size++] = t;
+
+        return true;
     }
 
     @Override

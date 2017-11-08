@@ -14,7 +14,6 @@ public class Main {
         str1.add("Y");
         str1.add("Z");
 
-        str.addAll(str1);
         System.out.println(str);
     }
 }
