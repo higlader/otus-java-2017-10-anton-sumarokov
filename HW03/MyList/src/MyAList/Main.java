@@ -14,6 +14,13 @@ public class Main {
         str1.add("Y");
         str1.add("Z");
 
-        System.out.println(str);
+        Collections.copy(str1,str);
+        System.out.println(str1);
+
+        Collections.addAll(str1, "A","F","G");
+        System.out.println(str1);
+
+        Collections.sort(str1);
+        System.out.println(str1);
     }
 }

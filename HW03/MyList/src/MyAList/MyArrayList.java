@@ -37,7 +37,13 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public void sort(Comparator<? super T> c) {
-
+        ListIterator<T> i = this.listIterator();
+        Object[] a = this.toArray();
+        Arrays.sort(a, (Comparator) c);
+        for (Object ignored : a) {
+            i.next();
+        }
+        array = a;
     }
 
     @Override
@@ -99,7 +105,20 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        Object[] collectionArray = c.toArray();
+        int length = collectionArray.length;
+        int index = size;
+        int source = array.length - size;
+
+        if(length > source) {
+            size = array.length + (length - source);
+            array = Arrays.copyOf(array, size);
+        }else{
+            size += length;
+        }
+
+        System.arraycopy(collectionArray, 0, array, index, length);
+        return length > 0;
     }
 
     @Override
@@ -124,12 +143,15 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        return (T) array[index];
     }
 
     @Override
     public T set(int index, T element) {
-        return null;
+
+        T value = (T) array[index];
+        array[index] = element;
+        return value;
     }
 
     @Override
@@ -167,14 +189,7 @@ public class MyArrayList<T> implements List<T> {
         return null;
     }
 
-    public static <T> void copy (List<T> destList,List<T> srcList) {
-        int srcSize = srcList.size();
-        int destSize = destList.size();
-        if (srcSize > destSize) {
-            System.out.println("Source List > Distanation List");
-        }
-        else {
-
-        }
+    public static <T> void copy (List<? super T> dest, List<? extends T> src) {
+        dest.addAll(src);
     }
 }
