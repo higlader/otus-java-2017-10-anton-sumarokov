@@ -7,26 +7,9 @@ import java.util.function.UnaryOperator;
  * Created by anton on 02.11.17.
  */
 public class MyArrayList<T> implements List<T> {
-
-    private static  int SIZE = 10;
-
-    int size;
-    private Object[] array;
-
-    public MyArrayList() {
-        this.size = SIZE;
-    }
-
-    public MyArrayList(int capacity) {
-        array = new Object[capacity];
-        size = 0;
-    }
-
-
-    public MyArrayList(Collection<? extends T> c) {
-        array = c.toArray();
-        size = array.length;
-    }
+    private static final int CAPACITY = 10;
+    private static  final Object[] DATA = {};
+    private int size;
 
 
 
@@ -37,13 +20,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public void sort(Comparator<? super T> c) {
-        ListIterator<T> i = this.listIterator();
-        Object[] a = this.toArray();
-        Arrays.sort(a, (Comparator) c);
-        for (Object ignored : a) {
-            i.next();
-        }
-        array = a;
+        throw new UnsupportedOperationException("Invalid operation.");
     }
 
     @Override
@@ -73,7 +50,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public Object[] toArray() {
-        throw new UnsupportedOperationException("Invalid operation.");
+        return new Object[0];
     }
 
     @Override
@@ -83,14 +60,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean add(T t) {
-        int source = array.length - size;
-        if(source < 1) {
-            array = Arrays.copyOf(array, size + 1);
-        }
-
-        array[size++] = t;
-
-        return true;
+        throw new UnsupportedOperationException("Invalid operation.");
     }
 
     @Override
@@ -105,20 +75,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        Object[] collectionArray = c.toArray();
-        int length = collectionArray.length;
-        int index = size;
-        int source = array.length - size;
-
-        if(length > source) {
-            size = array.length + (length - source);
-            array = Arrays.copyOf(array, size);
-        }else{
-            size += length;
-        }
-
-        System.arraycopy(collectionArray, 0, array, index, length);
-        return length > 0;
+        throw new UnsupportedOperationException("Invalid operation.");
     }
 
     @Override
@@ -143,15 +100,12 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        return (T) array[index];
+        throw new UnsupportedOperationException("Invalid operation.");
     }
 
     @Override
     public T set(int index, T element) {
-
-        T value = (T) array[index];
-        array[index] = element;
-        return value;
+        throw new UnsupportedOperationException("Invalid operation.");
     }
 
     @Override
@@ -188,8 +142,5 @@ public class MyArrayList<T> implements List<T> {
     public List<T> subList(int fromIndex, int toIndex) {
         throw new UnsupportedOperationException("Invalid operation.");
     }
-
-    public static <T> void copy (List<? super T> dest, List<? extends T> src) {
-        dest.addAll(src);
-    }
 }
+
