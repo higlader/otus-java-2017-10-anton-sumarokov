@@ -8,9 +8,35 @@ import java.util.function.UnaryOperator;
  */
 public class MyArrayList<T> implements List<T> {
     private static final int CAPACITY = 10;
-    private static  final Object[] DATA = {};
+    private   T[] data = (T[])new Object[CAPACITY];
     private int size;
 
+    public static int getCAPACITY() {
+        return CAPACITY;
+    }
+
+    public T[] getData() {
+        return data;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public  MyArrayList() {
+    }
+
+    public MyArrayList(int size) {
+        this.size = size;
+    }
+
+    private void ensureCapacity() {
+        if (size >= data.length) {
+            T[] newData = (T[])(new Object[size * 2 + 1]);
+            System.arraycopy(data, 0, newData, 0, size);
+            data = newData;
+        }
+    }
 
 
     @Override
@@ -110,7 +136,13 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public void add(int index, T element) {
-        throw new UnsupportedOperationException("Invalid operation.");
+        ensureCapacity();
+
+        for (int i = size - 1; i >= index; i--)
+            data[i + 1] = data[i];
+
+        data[index] = element;
+        size++;
     }
 
     @Override
@@ -142,5 +174,6 @@ public class MyArrayList<T> implements List<T> {
     public List<T> subList(int fromIndex, int toIndex) {
         throw new UnsupportedOperationException("Invalid operation.");
     }
+
 }
 
