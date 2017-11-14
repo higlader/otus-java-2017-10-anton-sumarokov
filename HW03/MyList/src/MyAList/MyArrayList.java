@@ -41,12 +41,6 @@ public class MyArrayList<T> implements List<T> {
         list.sort(c);
     }
 
-
-    @Override
-    public void replaceAll(UnaryOperator<T> operator) {
-        throw new UnsupportedOperationException("Invalid operation.");
-    }
-
     @Override
     public void sort(Comparator<? super T> c) {
         ListIterator<T> i = this.listIterator();
@@ -59,23 +53,13 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public Spliterator<T> spliterator() {
-        throw new UnsupportedOperationException("Invalid operation.");
-    }
-
-    @Override
     public int size() {
-        throw new UnsupportedOperationException("Invalid operation.");
+        return data.length;
     }
 
     @Override
     public boolean isEmpty() {
         return size() <= 0;
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        throw new UnsupportedOperationException("Invalid operation.");
     }
 
     @Override
@@ -89,11 +73,6 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public <T1> T1[] toArray(T1[] a) {
-        throw new UnsupportedOperationException("Invalid operation.");
-    }
-
-    @Override
     public boolean add(T t) {
         int available = data.length - size;
         if(available < 1) {
@@ -103,16 +82,6 @@ public class MyArrayList<T> implements List<T> {
         data[size++] = t;
 
         return true;
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        throw new UnsupportedOperationException("Invalid operation.");
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Invalid operation.");
     }
 
     @Override
@@ -131,26 +100,6 @@ public class MyArrayList<T> implements List<T> {
 
         System.arraycopy(collectionArray, 0, data, position, length);
         return length > 0;
-    }
-
-    @Override
-    public boolean addAll(int index, Collection<? extends T> c) {
-        throw new UnsupportedOperationException("Invalid operation.");
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Invalid operation.");
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Invalid operation.");
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Invalid operation.");
     }
 
     @Override
@@ -177,21 +126,6 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public T remove(int index) {
-        throw new UnsupportedOperationException("Invalid operation.");
-    }
-
-    @Override
-    public int indexOf(Object o) {
-        throw new UnsupportedOperationException("Invalid operation.");
-    }
-
-    @Override
-    public int lastIndexOf(Object o) {
-        throw new UnsupportedOperationException("Invalid operation.");
-    }
-
-    @Override
     public ListIterator<T> listIterator() {
         return new MyIterator<>(0);
     }
@@ -201,9 +135,10 @@ public class MyArrayList<T> implements List<T> {
         return new MyIterator<>(index);
     }
 
+
     @Override
-    public List<T> subList(int fromIndex, int toIndex) {
-        throw new UnsupportedOperationException("Invalid operation.");
+    public String toString() {
+        return Arrays.toString(toArray());
     }
 
     private class MyIterator<E> implements ListIterator<E> {
@@ -260,6 +195,76 @@ public class MyArrayList<T> implements List<T> {
         public void add(E e) {
 
         }
+    }
+
+    @Override
+    public T remove(int index) {
+        throw new UnsupportedOperationException("Invalid operation.");
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        throw new UnsupportedOperationException("Invalid operation.");
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        throw new UnsupportedOperationException("Invalid operation.");
+    }
+
+    @Override
+    public List<T> subList(int fromIndex, int toIndex) {
+        throw new UnsupportedOperationException("Invalid operation.");
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        throw new UnsupportedOperationException("Invalid operation.");
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+        throw new UnsupportedOperationException("Invalid operation.");
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Invalid operation.");
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends T> c) {
+        throw new UnsupportedOperationException("Invalid operation.");
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        throw new UnsupportedOperationException("Invalid operation.");
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        throw new UnsupportedOperationException("Invalid operation.");
+    }
+
+    @Override
+    public <T1> T1[] toArray(T1[] a) {
+        throw new UnsupportedOperationException("Invalid operation.");
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        throw new UnsupportedOperationException("Invalid operation.");
+    }
+
+    @Override
+    public Spliterator<T> spliterator() {
+        throw new UnsupportedOperationException("Invalid operation.");
+    }
+
+    @Override
+    public void replaceAll(UnaryOperator<T> operator) {
+        throw new UnsupportedOperationException("Invalid operation.");
     }
 }
 

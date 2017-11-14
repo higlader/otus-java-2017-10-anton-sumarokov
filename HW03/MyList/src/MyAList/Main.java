@@ -4,12 +4,12 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        MyArrayList<Integer> my = new MyArrayList<>();
-        my.add(1);
-        System.out.println(my);
-        for(Integer i:my) {
-            System.out.println(i);
-        }
+        MyArrayList<String> myString = new MyArrayList<>();
+        Collections.addAll(myString, "A", "B", "C", "D", "E", "H", "I", "L", "S", "Z");
+        System.out.println(myString);
+
+        Collections.addAll(myString, "G", "R","T");
+        System.out.println(myString);
     }
 
  }
