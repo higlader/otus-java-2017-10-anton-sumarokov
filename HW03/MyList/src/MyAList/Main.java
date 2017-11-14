@@ -4,11 +4,11 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        MyArrayList<String> str1 = new MyArrayList<>();
-        str1.add(0,"A");
-
-        for (String str : str1) {
-            System.out.println("String = " + str);
+        MyArrayList<Integer> my = new MyArrayList<>();
+        my.add(1);
+        System.out.println(my);
+        for(Integer i:my) {
+            System.out.println(i);
         }
     }
 

@@ -7,35 +7,38 @@ import java.util.function.UnaryOperator;
  * Created by anton on 02.11.17.
  */
 public class MyArrayList<T> implements List<T> {
-    private static final int CAPACITY = 10;
-    private   T[] data = (T[])new Object[CAPACITY];
+    private static  int CAPACITY = 10;
+    private   Object[] data;
     private int size;
 
-    public static int getCAPACITY() {
-        return CAPACITY;
+    public MyArrayList() {
+        this(CAPACITY);
     }
 
-    public T[] getData() {
-        return data;
+    public MyArrayList(Collection<? extends T> c) {
+        data =  c.toArray();
+        size = data.length;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public  MyArrayList() {
-    }
-
-    public MyArrayList(int size) {
-        this.size = size;
+    public MyArrayList(int capacity) {
+        data = new Object[capacity];
+        size = 0;
     }
 
     private void ensureCapacity() {
         if (size >= data.length) {
-            T[] newData = (T[])(new Object[size * 2 + 1]);
+            Object[] newData = (new Object[size * 2 + 1]);
             System.arraycopy(data, 0, newData, 0, size);
             data = newData;
         }
+    }
+
+    public static <T> void copy(List<? super T> dest, List<? extends T> src) {
+        dest.addAll(src);
+    }
+
+    public static <T> void sort(List<T> list, Comparator<? super T> c) {
+        list.sort(c);
     }
 
 
@@ -46,7 +49,13 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public void sort(Comparator<? super T> c) {
-        throw new UnsupportedOperationException("Invalid operation.");
+        ListIterator<T> i = this.listIterator();
+        Object[] a = this.toArray();
+        Arrays.sort(a, (Comparator) c);
+        for (Object ignored : a) {
+            i.next();
+        }
+        data = a;
     }
 
     @Override
@@ -61,7 +70,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Invalid operation.");
+        return size() <= 0;
     }
 
     @Override
@@ -71,12 +80,12 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        throw new UnsupportedOperationException("Invalid operation.");
+        return new MyIterator<>(0);
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return Arrays.copyOf(data, this.size());
     }
 
     @Override
@@ -86,7 +95,14 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean add(T t) {
-        throw new UnsupportedOperationException("Invalid operation.");
+        int available = data.length - size;
+        if(available < 1) {
+            data = Arrays.copyOf(data, size + 1);
+        }
+
+        data[size++] = t;
+
+        return true;
     }
 
     @Override
@@ -101,7 +117,20 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        throw new UnsupportedOperationException("Invalid operation.");
+        Object[] collectionArray = c.toArray();
+        int length = collectionArray.length;
+        int position = size;
+        int available = data.length - size;
+
+        if(length > available) {
+            size = data.length + (length - available);
+            data = Arrays.copyOf(data, size);
+        }else{
+            size += length;
+        }
+
+        System.arraycopy(collectionArray, 0, data, position, length);
+        return length > 0;
     }
 
     @Override
@@ -126,19 +155,21 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        throw new UnsupportedOperationException("Invalid operation.");
+        return (T) data[index];
     }
 
     @Override
     public T set(int index, T element) {
-        throw new UnsupportedOperationException("Invalid operation.");
+        T value = (T) data[index];
+        data[index] = element;
+        return value;
     }
 
     @Override
     public void add(int index, T element) {
         ensureCapacity();
 
-        for (int i = size - 1; i >= index; i--)
+        for(int i = size - 1; i >= index; i--)
             data[i + 1] = data[i];
 
         data[index] = element;
@@ -162,12 +193,12 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public ListIterator<T> listIterator() {
-        throw new UnsupportedOperationException("Invalid operation.");
+        return new MyIterator<>(0);
     }
 
     @Override
     public ListIterator<T> listIterator(int index) {
-        throw new UnsupportedOperationException("Invalid operation.");
+        return new MyIterator<>(index);
     }
 
     @Override
@@ -175,5 +206,60 @@ public class MyArrayList<T> implements List<T> {
         throw new UnsupportedOperationException("Invalid operation.");
     }
 
+    private class MyIterator<E> implements ListIterator<E> {
+
+        int current = 0;
+
+        public MyIterator(int index) {
+            super();
+            current = index;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current < size();
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) throw new java.util.NoSuchElementException();
+            return (E) data[current++];
+        }
+
+        @Override
+        public boolean hasPrevious() {
+            return false;
+        }
+
+        @Override
+        public E previous() {
+            return null;
+        }
+
+        @Override
+        public int nextIndex() {
+            return 0;
+        }
+
+        @Override
+        public int previousIndex() {
+            return 0;
+        }
+
+        @Override
+        public void remove() {
+            MyArrayList.this.remove(--current);
+        }
+
+        @Override
+        public void set(E e) {
+            MyArrayList.this.set(current, (T) e);
+        }
+
+        @Override
+        public void add(E e) {
+
+        }
+    }
 }
 
