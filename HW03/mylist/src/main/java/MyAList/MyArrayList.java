@@ -143,7 +143,8 @@ public class MyArrayList<T> implements List<T> {
 
     private class MyIterator<E> implements ListIterator<E> {
 
-        int current = 0;
+        int current;
+        int last = -1;
 
         public MyIterator(int index) {
             super();
@@ -157,8 +158,12 @@ public class MyArrayList<T> implements List<T> {
 
         @Override
         public E next() {
-            if (!hasNext()) throw new java.util.NoSuchElementException();
-            return (E) data[current++];
+            last = current;
+            E result = null;
+            if(current <= (size() - 1)){
+                result = (E) data[current++];
+            }
+            return result;
         }
 
         @Override
@@ -188,7 +193,7 @@ public class MyArrayList<T> implements List<T> {
 
         @Override
         public void set(E e) {
-            MyArrayList.this.set(current, (T) e);
+            MyArrayList.this.set(last, (T) e);
         }
 
         @Override
