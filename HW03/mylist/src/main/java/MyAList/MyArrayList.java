@@ -54,7 +54,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public int size() {
-        return data.length;
+        return size;
     }
 
     @Override
@@ -168,22 +168,22 @@ public class MyArrayList<T> implements List<T> {
 
         @Override
         public boolean hasPrevious() {
-            return false;
+            throw new UnsupportedOperationException("Invalid operation.");
         }
 
         @Override
         public E previous() {
-            return null;
+            throw new UnsupportedOperationException("Invalid operation.");
         }
 
         @Override
         public int nextIndex() {
-            return 0;
+            throw new UnsupportedOperationException("Invalid operation.");
         }
 
         @Override
         public int previousIndex() {
-            return 0;
+            throw new UnsupportedOperationException("Invalid operation.");
         }
 
         @Override
@@ -198,7 +198,7 @@ public class MyArrayList<T> implements List<T> {
 
         @Override
         public void add(E e) {
-
+            throw new UnsupportedOperationException("Invalid operation.");
         }
     }
 
