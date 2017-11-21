@@ -1,5 +1,20 @@
 package bench;
 
+/**
+ * results:
+ *  1) ParNew: runs: 7  time: 907
+ *     ConcurrentMarkSweep: runs: 3 time: 602
+ *
+ *  2) PS Scavenge runs: 4  time: 281
+ *     PS MarkSweep runs: 1  time: 711
+ *
+ *  3) Copy runs: 5 time: 473
+ *     MarkSweepCompact runs: 1 time: 419
+ *
+ *  4) G1 Young Generation  runs:0   time:0
+ *     G1 Old Generation    runs:0   time:0
+ */
+
 import com.sun.management.GarbageCollectionNotificationInfo;
 
 import javax.management.NotificationEmitter;
@@ -52,11 +67,8 @@ public class Main {
 
     private static void printStats() {
         JvmStatistics jvmStatistics = new JvmStatistics();
-        long appTime = System.currentTimeMillis() - startTime;
         for (String name : stats.keySet()){
-            ArrayList<Long> list = stats.get(name);
-            long totalTimeMS = list.stream().mapToLong(Long::longValue).sum();
-            System.out.println("GC: " + name + ", runs: " + list.size() + ", duration: " + totalTimeMS + "/" + appTime + " " + "young: " + jvmStatistics.getYoungGcCount() + " " + "old: " + jvmStatistics.getFullGcCount() + "young time: " + jvmStatistics.getYoungGcTotalTime());
+            System.out.println("GC: " + name +  " young: " + jvmStatistics.getYoungGcCount() + " old: " + jvmStatistics.getFullGcCount() + " young time: " + jvmStatistics.getYoungGcTotalTime() + " oldtime: " + jvmStatistics.getFullGcTotalTime());
         }
     }
 
@@ -99,6 +111,7 @@ public class Main {
         public long getPeakThreadCount() {
             return threadMXBean.getPeakThreadCount();
         }
+
         public long getYoungGcCount() {
             int gcSize=gcList.size();
             long result=0;
