@@ -11,8 +11,8 @@ package bench;
  *  3) Copy runs: 5 time: 473
  *     MarkSweepCompact runs: 1 time: 419
  *
- *  4) G1 Young Generation  runs:0   time:0
- *     G1 Old Generation    runs:0   time:0
+ *  4) G1 Young Generation  runs:31   time:1385
+ *     G1 Old Generation    runs:7   time:4387
  */
 
 import com.sun.management.GarbageCollectionNotificationInfo;
@@ -85,9 +85,11 @@ public class Main {
             youngGcNameList.add("Copy");
             youngGcNameList.add("ParNew");
             youngGcNameList.add("PS Scavenge");
+            youngGcNameList.add("G1 Young Generation");
             fullGcNameList.add("MarkSweepCompact");
             fullGcNameList.add("PS MarkSweep");
             fullGcNameList.add("ConcurrentMarkSweep");
+            fullGcNameList.add("G1 Old Generation");
 
             // JRocket
             youngGcNameList.add("Garbage collection optimized for short pausetimes Young Collector");
