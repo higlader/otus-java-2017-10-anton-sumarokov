@@ -11,8 +11,8 @@ package bench;
  *  3) Copy runs: 5 time: 473
  *     MarkSweepCompact runs: 1 time: 419
  *
- *  4) G1 Young Generation  runs:31   time:1385
- *     G1 Old Generation    runs:7   time:4387
+ *  4) G1 Young Generation  runs:24   time:883
+ *     G1 Old Generation    runs:4   time:1235
  */
 
 import com.sun.management.GarbageCollectionNotificationInfo;
