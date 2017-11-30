@@ -27,15 +27,21 @@ public class Menu extends Transaction{
                 choisePunkt = "Выберите сумму для пополнения счета: ";
                 System.out.println(choisePunkt);
                 sum();
+                deposit();
+                sum();
                 break;
             case 2:
                 choisePunkt = "Выберите сумму для снятия со счета: ";
                 System.out.println(choisePunkt);
                 sum();
+                withdraw();
+                sum();
                 break;
             case 3:
                 choisePunkt = "Запрос баланса: ";
                 System.out.println(choisePunkt);
+                balance();
+                sum();
                 break;
             case 4:
                 choisePunkt = "Выход из системы ";

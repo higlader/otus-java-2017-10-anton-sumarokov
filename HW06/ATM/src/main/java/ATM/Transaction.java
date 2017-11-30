@@ -9,6 +9,7 @@ public class Transaction {
     int money;
     long balance = 0;
     long currentbalance;
+    long totalbalance;
 
     public void sum() {
         System.out.println(
@@ -26,15 +27,12 @@ public class Transaction {
         switch (money) {
             case 1:
                 money = 500;
-                sum();
                 break;
             case 2:
                 money = 1000;
-                sum();
                 break;
             case 3:
                 money = 5000;
-                sum();
                 break;
             case 4:
                 Menu menu = new Menu();
@@ -51,5 +49,10 @@ public class Transaction {
 
     public void deposit(){
         balance = balance + money;
+    }
+
+    public void balance() {
+        totalbalance = balance - currentbalance;
+        System.out.println(totalbalance);
     }
 }
