@@ -6,7 +6,6 @@ package ATM;
 public class MainATM {
     public static void main(String[] args) {
         Menu m = new Menu();
-        m.choiseMenu();
-
+        m.menu();
     }
 }
