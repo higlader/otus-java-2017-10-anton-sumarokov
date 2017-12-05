@@ -1,4 +1,4 @@
-package test;
+package ru.otus.test;
 
 import myframework.annotations.After;
 import myframework.annotations.Before;

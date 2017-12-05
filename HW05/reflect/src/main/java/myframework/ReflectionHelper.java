@@ -53,9 +53,9 @@ class ReflectionHelper {
         List<Method> result = new ArrayList<>();
         List<Method> methods = new ArrayList<>(Arrays.asList(type.getDeclaredMethods()));
 
-        for(Method m : methods) {
-            if(m.isAnnotationPresent(annotation)){
-                result.add(m);
+        for(Method method : methods) {
+            if(method.isAnnotationPresent(annotation)){
+                result.add(method);
             }
         }
 
