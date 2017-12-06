@@ -28,6 +28,7 @@ public class Menu extends Transaction{
                 System.out.println(choisePunkt);
                 sum();
                 deposit();
+                balance();
                 sum();
                 break;
             case 2:
@@ -35,6 +36,7 @@ public class Menu extends Transaction{
                 System.out.println(choisePunkt);
                 sum();
                 withdraw();
+                balance();
                 sum();
                 break;
             case 3:
