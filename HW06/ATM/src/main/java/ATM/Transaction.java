@@ -5,11 +5,8 @@ import java.util.Scanner;
 /**
  * Created by anton on 30.11.17.
  */
-public class Transaction {
+public class Transaction extends Cell {
     int money;
-    long balance = 0;
-    long currentbalance;
-    long totalbalance;
 
     public void sum() {
         System.out.println(
@@ -27,12 +24,18 @@ public class Transaction {
         switch (money) {
             case 1:
                 money = 500;
+                deposit(money);
+                sum();
                 break;
             case 2:
                 money = 1000;
+                deposit(money);
+                sum();
                 break;
             case 3:
                 money = 5000;
+                deposit(money);
+                sum();
                 break;
             case 4:
                 Menu menu = new Menu();
@@ -41,18 +44,5 @@ public class Transaction {
                 System.out.println("Не верная сумма");
                 sum();
         }
-    }
-
-    public void withdraw() {
-        currentbalance = balance - money;
-    }
-
-    public void deposit(){
-        balance = balance + money;
-    }
-
-    public void balance() {
-        totalbalance = balance - currentbalance;
-        System.out.println(totalbalance);
     }
 }
